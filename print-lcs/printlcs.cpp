@@ -25,7 +25,7 @@ string printlcs(string x, string y, int len1, int len2){
 
   int k = m[len1][len2];
   int i = len1;
-  int j = len2;
+  int j;
 
   for(j=1;m[i][j]!=k;j++);
 
