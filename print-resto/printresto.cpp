@@ -11,51 +11,46 @@ void scambia(int* array, int i, int j){
 }
 
 void sort(int* array, int n){
-  for (int i=0;i<n;i++)
+  for(int i=0;i<n;i++)
     for(int j=i+1;j<n;j++)
       if(array[i]>array[j])
         scambia(array,i,j);
 }
 
-void resto(int* tagli, int n, int r, ofstream& out){
+void printresto(int* tagli, int n, int r, ofstream& out){
   int* table = new int[r+1];
   int* s = new int[r+1];
   table[0] = 0;
   s[0] = 0;
-
   for(int i=1;i<=r;i++){
-    table[i] = INT_MAX;
+    table[i] = r+1;
     s[i] = 0;
   }
 
   for(int i=1;i<=r;i++)
-    for(int j=0;j<n;j++)
-      if(i-tagli[j]>=0){
-        int sub_res = table[i-tagli[j]];
-        if(sub_res != INT_MAX && sub_res + 1 < table[i]){
-          table[i] = sub_res + 1;
-          s[i] = j;
-        }
+    for(int j=0;j<n;j++){
+      if(i-tagli[j]>=0 && 1+table[i-tagli[j]]<table[i]){
+        table[i] = 1+table[i-tagli[j]];
+        s[i] = j;
       }
-  out << table[r] << " ";
+    }
 
-int k=r;
-int* coin = new int[table[r]];
-int i=0;
+  int* coin = new int[table[r]];
+  int k = r;
+  int i = 0;
 
-while(k>0){
-  coin[i++] = tagli[s[k]];
-  k = k-tagli[s[k]];
-}
-
-  // Stampa
+  while(k>0){
+    coin[i++] = tagli[s[k]];
+    k = k-tagli[s[k]];
+  }
 
   sort(coin,table[r]);
-  for (int i=0;i<table[r];i++)
+  // Stampa
+  out << table[r] << " ";
+  for(int i=0;i<table[r];i++)
     out << coin[i] << " ";
   out << endl;
 }
-
 
 int main(){
   ifstream input;
@@ -70,6 +65,6 @@ int main(){
     int* array = new int[n];
     for(int j=0;j<n;j++)
       input >> array[j];
-    resto(array,n,r,output);;
+    printresto(array,n,r,output);
   }
 }
