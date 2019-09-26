@@ -20,7 +20,7 @@ string printlcs(string x, string y, int len1, int len2){
       else m[i][j] = max(m[i][j-1],m[i-1][j]);
     }
 
-  int max = m[len1][len2];
+//  int max = m[len1][len2];
   int i = len1;
   int j = len2;
   string lcs = "";
@@ -47,7 +47,7 @@ int main(){
 
   string x,y;
   int l1,l2;
-  
+
   for (int i=0;i<100;i++){
     input >> l1 >> l2 >> x >> y;
     output << printlcs(x,y,l1,l2) << endl;

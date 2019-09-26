@@ -49,7 +49,7 @@ template <class H> class MinHeap{
       }
 
       H* extract(){
-        if(heapsize==0) return NULL;
+        if(len==0) return NULL;
         scambia(0,len-1);
         len--;
         heapify(0);

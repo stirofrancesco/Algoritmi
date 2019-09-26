@@ -85,7 +85,7 @@ void heapSort(Coppia<H>** V, int n, ofstream& out){
   MaxHeap< Coppia<H> >* mh = new MaxHeap< Coppia<H> >(V,n);
   for(int i=0;i<n;i++)
     mh->extract();
-
+ // STAMPA
   out << mh->getHeapifyNumber() << " ";
   for(int i=0;i<n;i++)
     out << "(" << V[i]->getFirst() << "," << V[i]->getSecond() << ")" << " ";
